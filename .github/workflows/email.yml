@@ -44,8 +44,10 @@ jobs:
           # email body as text
           body: |
             ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }} 
-            with commit id ${{ github.sha }}
+            with commit id  ${{ github.sha }}  on branch ${{ github.ref }}
             To View workflow click ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
+            Previous commit id ${{ github.event.before }} on branch ${{ github.event.base_ref }}
           # comma-separated string, send email to
           to: mahimasahu@mycloudbuilders.com
           # from email name
