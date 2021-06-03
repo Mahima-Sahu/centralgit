@@ -45,11 +45,12 @@ jobs:
           body: |
             ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }} 
             with commit id  ${{ github.sha }}  on branch ${{ github.ref }}
+            
             To View workflow click ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             
-            Previous commit id ${{ github.event.before }} on branch ${{ github.event.base_ref }}
+            Previous commit id ${{ github.event.before }} 
           # comma-separated string, send email to
-          to: mahimasahu@mycloudbuilders.com
+          to: mahimasahu@mycloudbuilders.com, sudhirsingh@mycloudbuilders.com, pavanikrishna@mycloudbuilders.com
           # from email name
           from: chaincodedev/obortech-admin    
 #       - name: Verify Kubernetes deployment                               
