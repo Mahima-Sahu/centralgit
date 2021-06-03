@@ -50,7 +50,25 @@ jobs:
         env:                                                                                                          
           RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:v1
         with:                                                                                                         
-          args: set image deployment/my-pod nginx=${{ env.RELEASE_IMAGE }} --record -n $KUBE_NAMESPACE       
+          args: set image deployment/my-pod nginx=${{ env.RELEASE_IMAGE }} --record -n $KUBE_NAMESPACE  
+      - name: Send mail
+        if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          # mail server settings
+          server_address: smtp.gmail.com
+          server_port: 465
+          # user credentials
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          # email subject
+          subject: ${{ github.job }} job has ${{ job.status }} for ${{ github.repository }} 
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }}
+          # comma-separated string, send email to
+          to: sudhirsingh@mycloudbuilders.com, mahimasahu@mycloudbuilders.com
+          # from email name
+          from: chaincodedev/obortech-admin    
 #       - name: Verify Kubernetes deployment                               
 #         uses: kodermax/kubectl-aws-eks@master                            
 #         with:                                                            
