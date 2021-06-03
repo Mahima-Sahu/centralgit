@@ -43,8 +43,9 @@ jobs:
           subject: ${{ github.job }} job has ${{ job.status }} for ${{ github.repository }} 
           # email body as text
           body: |
-            ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }}
-            echo ${{ github.event.workflow_run.html_url }} | View workflow
+            ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }} 
+            with commit id $GITHUB_SHA
+            To View workflow click $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
           # comma-separated string, send email to
           to: mahimasahu@mycloudbuilders.com
           # from email name
