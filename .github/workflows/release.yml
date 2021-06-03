@@ -66,7 +66,7 @@ jobs:
           # email body as text
           body: ${{ github.job }} job in worflow ${{ github.workflow }} of repository ${{ github.repository }} has ${{ job.status }}
           # comma-separated string, send email to
-          to: sudhirsingh@mycloudbuilders.com, mahimasahu@mycloudbuilders.com
+          to: sudhirsingh@mycloudbuilders.com, mahimasahu@mycloudbuilders.com, pavanikrishna@mycloudbuilders.com
           # from email name
           from: chaincodedev/obortech-admin    
 #       - name: Verify Kubernetes deployment                               
