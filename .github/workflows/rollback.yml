@@ -52,7 +52,7 @@ jobs:
       - name: Rollback to previous commit
         run: |
           git fsck --full
-          git revert 831006dd2975db34d23cc495d746e76e9697d011
+          git revert 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
           git push origin master
           
       - name: Send mail
