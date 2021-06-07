@@ -25,21 +25,21 @@ jobs:
           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}        
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}    
-      - name: Login to Amazon ECR            
-        id: login-ecr                        
-        uses: aws-actions/amazon-ecr-login@v1     
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+#       - name: Login to Amazon ECR            
+#         id: login-ecr                        
+#         uses: aws-actions/amazon-ecr-login@v1     
+#       - name: Build, tag, and push image to Amazon ECR
+#         id: build-image
+#         env:
+#           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
-        run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+#         run: |
+#           # Build a docker container and
+#           # push it to ECR so that it can
+#           # be deployed to ECS.
+#           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+#           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+#           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
 #       - name: Rollback Release
 #         uses: author/action-rollback@stable
@@ -51,7 +51,7 @@ jobs:
 #rolling
       - name: Rollback to previous commit
         run: |
-          git reset --hard ${{ github.event.before }}
+          git reset --hard  ${{ secrets.PREV_COMMIT_ID }}
           git push origin master
           
       - name: Send mail
@@ -73,7 +73,7 @@ jobs:
             
             To View workflow click ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             
-            Previous commit id ${{ github.event.before }} 
+            Rollback commit id ${{ secrets.PREV_COMMIT_ID }} 
           # comma-separated string, send email to
           to: mahimasahu@mycloudbuilders.com
           # from email name
