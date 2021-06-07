@@ -60,7 +60,7 @@ jobs:
         run: |
           git config --global user.name 'mahima' 
           git config --global user.email 'm@gmail.com'
-          git reset --hard dac312bc85c40c4bdf72e5683a14d6a08d0b69ff
+          git reset --hard HEAD~1
           git push --force
 #       git fsck --full
 #         git revert 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
