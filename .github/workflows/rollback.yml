@@ -51,7 +51,7 @@ jobs:
 #rolling
       - name: Rollback to previous commit
         run: |
-          git reset --hard 1ba9a07dfefd983eba7be771c480fdfffbb94dd2
+          git revert 831006dd2975db34d23cc495d746e76e9697d011
           git push origin master
           
       - name: Send mail
