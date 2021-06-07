@@ -41,13 +41,17 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
-      - name: Rollback Release
-        uses: author/action-rollback@stable
-        with:
-          # Using a tag name
-          tag: $IMAGE_TAG
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+#       - name: Rollback Release
+#         uses: author/action-rollback@stable
+#         with:
+#           # Using a tag name
+#           tag: $IMAGE_TAG
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+      - name: Rollback to previous commit
+        run: |
+          git reset --hard ${{ github.event.before }}
+          git push origin master
           
       - name: Send mail
         if: always()
