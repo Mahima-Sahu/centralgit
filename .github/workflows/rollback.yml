@@ -51,9 +51,13 @@ jobs:
 #rolling
       - name: Rollback to previous commit
         run: |
-          git fsck --full
-          git revert 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
-          git push origin master
+          git config --global user.name 'mahima' 
+          git config --global user.email 'm@gmail.com'
+          git reset --hard 'HEAD~1'
+          git push --force
+#       git fsck --full
+#         git revert 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
+#         git push origin master
           
       - name: Send mail
         if: always()
