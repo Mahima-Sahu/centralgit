@@ -51,6 +51,7 @@ jobs:
 #rolling
       - name: Rollback to previous commit
         run: |
+          git fsck --full
           git revert 831006dd2975db34d23cc495d746e76e9697d011
           git push origin master
           
