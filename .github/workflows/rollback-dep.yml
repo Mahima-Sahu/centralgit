@@ -8,9 +8,8 @@ on:
       image_id:
         description: Enter Image tag Id for Rollback
         required: true
-        default: 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
 
-name: RollBack to specific image tag app level
+name: RollBack to specific image tag application level
 
 env:
   IMAGE_TAG: ${{ github.event.inputs.image_id }}
