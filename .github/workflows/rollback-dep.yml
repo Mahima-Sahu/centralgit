@@ -1,15 +1,19 @@
 # This workflow will rollback to specific image tag if application working is not stable
 
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
  
-# on:
-#   workflow_dispatch:
-#     branches: [master]
+on:
+  workflow_dispatch:
+    inputs:
+      image_id:
+        description: Enter Image tag Id for Rollback
+        required: true
+        default: 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
 
 name: RollBack to specific image tag app level
 
 env:
-  IMAGE_TAG: 6e81810f06ac403fbdd655eaa12d6beb2a36b35e
+  IMAGE_TAG: ${{ github.event.inputs.image_id }}
   KUBE_NAMESPACE: default
   EKS_CLUSTER: myeks
   DEPLOYMENT_NAME: app
