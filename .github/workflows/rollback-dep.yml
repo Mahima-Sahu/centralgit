@@ -4,7 +4,7 @@ on: [workflow_dispatch]
  
 # on:
 #   workflow_dispatch:
-#     branch: [master]
+#     branches: [master]
 
 name: RollBack to specific image tag app level
 
@@ -14,6 +14,7 @@ env:
   EKS_CLUSTER: myeks
   DEPLOYMENT_NAME: app
   ECR_REPOSITORY: my-image
+  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
 jobs:
   deploy:
@@ -41,10 +42,10 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+#     - name: Build, tag, and push image to Amazon ECR
+#       id: build-image
+#       env:
+#         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
 #       run: |
 #         # Build a docker container and
