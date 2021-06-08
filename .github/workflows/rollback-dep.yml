@@ -14,7 +14,6 @@ env:
   EKS_CLUSTER: myeks
   DEPLOYMENT_NAME: app
   ECR_REPOSITORY: my-image
-  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
 jobs:
   deploy:
@@ -56,6 +55,8 @@ jobs:
 #         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       # Deploy the Docker image to the EKS cluster
     - name: Deploy to EKS
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
         aws eks --region us-east-1 update-kubeconfig --name $EKS_CLUSTER
         #kubectl get pods -n $KUBE_NAMESPACE
