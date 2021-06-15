@@ -49,7 +49,7 @@ jobs:
             
             To View workflow click ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             
-            Previous commit id ${{ github.event_name.before }} 
+            Previous commit id ${{ github.event.workflow_dispatch.before }} 
           # comma-separated string, send email to
           to: mahimasahu@mycloudbuilders.com
           # from email name
