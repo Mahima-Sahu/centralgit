@@ -51,7 +51,7 @@ jobs:
             
             Previous commit id ${{ github.event.before }} 
           # comma-separated string, send email to
-          to: mahimasahu@mycloudbuilders.com
+          to: sudhirsingh@mycloudbuilders.com, mahimasahu@mycloudbuilders.com, pavanikrishna@mycloudbuilders.com, alok.gupta@chaincodeconsulting.com, gary@chaincodeconsulting.com
           # from email name
           from: chaincodedev/obortech-admin    
 #       - name: Verify Kubernetes deployment                               
